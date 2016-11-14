@@ -5,7 +5,7 @@ The following repository contains the arduino and ROS files to operate the RoboM
 
 2. Switch on the power supply for the robot and the kinect using the 2 switches which are present on the power board.
 
-3. Connect the USB extender and the kinect to the USB ports on the laptop.
+3. Connect the USB extender and the kinect to the USB ports on the laptop
 
 4. Upload the Code 'teletele' onto the Arduino Mega which is attached to the base of the robot.
 
