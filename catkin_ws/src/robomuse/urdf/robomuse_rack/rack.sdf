@@ -1,0 +1,82 @@
+<sdf version='1.4'>
+  <model name='first'>
+    <link name='rack_base_link'>
+      <pose>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.11465 0.04365 0.1625 0 -0 0</pose>
+        <mass>4</mass>
+        <inertia>
+          <ixx>0.13807</ixx>
+          <ixy>-0.0214414</ixy>
+          <ixz>-0.073517</ixz>
+          <iyy>0.18864</iyy>
+          <iyz>-0.028381</iyz>
+          <izz>0.0837277</izz>
+        </inertia>
+      </inertial>
+      <collision name='rack_base_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.484 0.2 0.006</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name='rack_base_link_collision_rack_vertical_link'>
+        <pose>0.2293 0.0873 0.325 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.0254 0.0254 0.65</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='rack_base_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.484 0.2 0.006</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Red</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+        <material>
+          <script>
+            <name>Gazebo/Red</name>
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
+      <visual name='rack_base_link_visual_rack_vertical_link'>
+        <pose>0.2293 0.0873 0.325 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.0254 0.0254 0.65</size>
+          </box>
+        </geometry>
+      </visual>
+      <velocity_decay>
+        <linear>0</linear>
+        <angular>0</angular>
+      </velocity_decay>
+    </link>
+    <plugin name='base_controller' filename='libgazebo_ros_planar_move.so'>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>100.0</odometryRate>
+      <robotBaseFrame>base_link</robotBaseFrame>
+    </plugin>
+    <static>0</static>
+    <plugin name='base_controller' filename='libgazebo_ros_planar_move.so'>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>100.0</odometryRate>
+      <robotBaseFrame>base_link</robotBaseFrame>
+    </plugin>
+  </model>
+</sdf>

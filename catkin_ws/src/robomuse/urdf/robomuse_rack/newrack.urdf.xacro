@@ -1,0 +1,258 @@
+<?xml version="1.0"?>
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor" 
+       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller" 
+       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface" 
+       xmlns:xacro="http://ros.org/wiki/xacro"
+	name="first">
+
+<xacro:include filename="$(find robomuse)/urdf/robomuse_rack/rack.gazebo.xacro"/> 
+ 
+  <property name="rack_base_size_x" value=".484"/>
+  <property name="rack_base_size_y" value="0.200"/>
+  <property name="rack_base_size_z" value="0.006"/>
+  <property name="rack_base_mass" value="2.0"/>
+
+  <property name="base_size_x" value=".984"/>
+  <property name="base_size_y" value="0.400"/>
+  <property name="base_size_z" value="0.006"/>
+  <property name="base_mass" value="2.0"/>
+
+  <property name="vertical_offset_x" value="0.242"/>
+  <property name="vertical_offset_y" value="0.1"/>
+  <property name="vertical_offset_z" value="0.003"/>
+  <property name="rack_vertical_mass" value="0.1"/>
+
+  <property name="rack_vertical_size_x" value="0.0254"/>
+  <property name="rack_vertical_size_y" value="0.0254"/>
+  <property name="rack_vertical_size_z" value="0.780"/>
+
+
+    <link name="rack_base_link1">
+      <inertial>
+        <mass value="2"/>
+        <origin xyz="${vertical_offset_x} 0 0"/>
+        <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
+      </inertial>
+      <visual>
+        <origin xyz="${vertical_offset_x} 0 0" rpy="0 0 0"/>
+                <geometry>
+          <box size="0.0508 0.0508 0.003"/>
+        </geometry>
+        <material name="DarkGrey"/>
+      </visual>
+      <collision>
+        <origin xyz="${vertical_offset_x} 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.0508 0.0508 0.003"/>
+        </geometry>
+      </collision>
+    </link>
+
+      <joint name="rack_joint_base1" type="fixed">
+      <origin xyz="${vertical_offset_x} ${vertical_offset_y} 0" rpy="0 0 0"/>
+      <child link="rack_vertical_link1"/>
+      <parent link="rack_base_link1"/>
+    </joint>
+
+    <link name="rack_vertical_link1">
+      <inertial>
+        <mass value="2"/>
+        <origin xyz="0 0 ${rack_vertical_size_z/2}"/>
+        <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 ${rack_vertical_size_z/2}" rpy="0 0 0"/>
+                <geometry>
+          <box size="${rack_vertical_size_x} ${rack_vertical_size_y} ${rack_vertical_size_z}"/>
+        </geometry>
+        <material name="Orange"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 ${rack_vertical_size_z/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${rack_vertical_size_x} ${rack_vertical_size_y} ${rack_vertical_size_z}"/>
+        </geometry>
+      </collision>
+    </link>
+
+<joint name="rack_joint_base2" type="fixed">
+      <origin xyz="${vertical_offset_x} ${-vertical_offset_y} 0" rpy="0 0 0"/>
+      <child link="rack_vertical_link2"/>
+      <parent link="rack_base_link1"/>
+    </joint>
+
+<link name="rack_vertical_link2">
+      <inertial>
+        <mass value="2"/>
+        <origin xyz="0 0 ${rack_vertical_size_z/2}"/>
+        <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 ${rack_vertical_size_z/2}" rpy="0 0 0"/>
+                <geometry>
+          <box size="${rack_vertical_size_x} ${rack_vertical_size_y} ${rack_vertical_size_z}"/>
+        </geometry>
+        <material name="Orange"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 ${rack_vertical_size_z/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${rack_vertical_size_x} ${rack_vertical_size_y} ${rack_vertical_size_z}"/>
+        </geometry>
+      </collision>
+    </link>
+<joint name="rack_joint_base3" type="fixed">
+      <origin xyz="${-vertical_offset_x} ${-vertical_offset_y} 0" rpy="0 0 0"/>
+      <child link="rack_vertical_link3"/>
+      <parent link="rack_base_link1"/>
+    </joint>
+<link name="rack_vertical_link3">
+      <inertial>
+        <mass value="2"/>
+        <origin xyz="${rack_vertical_size_x/2} ${rack_vertical_size_y/2} ${rack_vertical_size_z/2}"/>
+        <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
+      </inertial>
+      <visual>
+        <origin xyz="${rack_vertical_size_x/2} ${rack_vertical_size_y/2} ${rack_vertical_size_z/2}" rpy="0 0 0"/>
+                <geometry>
+          <box size="${rack_vertical_size_x} ${rack_vertical_size_y} ${rack_vertical_size_z}"/>
+        </geometry>
+        <material name="Orange"/>
+      </visual>
+      <collision>
+        <origin xyz="${rack_vertical_size_x/2} ${rack_vertical_size_y/2} ${rack_vertical_size_z/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${rack_vertical_size_x} ${rack_vertical_size_y} ${rack_vertical_size_z}"/>
+        </geometry>
+      </collision>
+    </link>
+<joint name="rack_joint_base4" type="fixed">
+      <origin xyz="${-vertical_offset_x} ${vertical_offset_y} 0" rpy="0 0 0"/>
+      <child link="rack_vertical_link4"/>
+      <parent link="rack_base_link1"/>
+    </joint>
+<link name="rack_vertical_link4">
+      <inertial>
+        <mass value="2"/>
+        <origin xyz="${rack_vertical_size_x/2} ${rack_vertical_size_y/2} ${rack_vertical_size_z/2}"/>
+        <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
+      </inertial>
+      <visual>
+        <origin xyz="${rack_vertical_size_x/2} ${-rack_vertical_size_y/2} ${rack_vertical_size_z/2}" rpy="0 0 0"/>
+                <geometry>
+          <box size="${rack_vertical_size_x} ${rack_vertical_size_y} ${rack_vertical_size_z}"/>
+        </geometry>
+        <material name="Orange"/>
+      </visual>
+      <collision>
+        <origin xyz="${rack_vertical_size_x/2} ${rack_vertical_size_y/2} ${rack_vertical_size_z/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${rack_vertical_size_x} ${rack_vertical_size_y} ${rack_vertical_size_z}"/>
+        </geometry>
+      </collision>
+    </link>
+
+<joint name="rack_joint_link11" type="fixed">
+      <origin xyz="${vertical_offset_x} ${vertical_offset_y} 0.090" rpy="0 0 0"/>
+      <child link="rack_link2"/>
+      <parent link="rack_vertical_link1"/>
+    </joint>
+<link name="rack_link2">
+      <inertial>
+        <mass value="2"/>
+        <origin xyz="0 0 0.09"/>
+        <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
+      </inertial>
+      <visual>
+        <origin xyz="${-rack_base_size_x} ${-rack_base_size_y} 0.09" rpy="0 0 0"/>
+                <geometry>
+          <box size="${rack_base_size_x} ${rack_base_size_y} ${rack_base_size_z}"/>
+        </geometry>
+        <material name="DarkGrey"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0.09" rpy="0 0 0"/>
+        <geometry>
+          <box size="${rack_base_size_x} ${rack_base_size_y} ${rack_base_size_z}"/>
+        </geometry>
+      </collision>
+</link>
+
+<joint name="rack_joint_link21" type="fixed">
+      <origin xyz="${vertical_offset_x} ${vertical_offset_y} 0.190" rpy="0 0 0"/>
+      <child link="rack_link3"/>
+      <parent link="rack_vertical_link1"/>
+    </joint>
+<link name="rack_link3">
+      <inertial>
+        <mass value="2"/>
+        <origin xyz="0 0 0.19"/>
+        <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
+      </inertial>
+      <visual>
+        <origin xyz="${-rack_base_size_x} ${-rack_base_size_y} 0.19" rpy="0 0 0"/>
+                <geometry>
+          <box size="${rack_base_size_x} ${rack_base_size_y} ${rack_base_size_z}"/>
+        </geometry>
+        <material name="DarkGrey"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0.19" rpy="0 0 0"/>
+        <geometry>
+          <box size="${rack_base_size_x} ${rack_base_size_y} ${rack_base_size_z}"/>
+        </geometry>
+      </collision>
+</link>
+<joint name="rack_joint_link31" type="fixed">
+      <origin xyz="${vertical_offset_x} ${vertical_offset_y} 0.290" rpy="0 0 0"/>
+      <child link="rack_link4"/>
+      <parent link="rack_vertical_link1"/>
+    </joint>
+<link name="rack_link4">
+      <inertial>
+        <mass value="2"/>
+        <origin xyz="0 0 0.29"/>
+        <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
+      </inertial>
+      <visual>
+        <origin xyz="${-rack_base_size_x} ${-rack_base_size_y} 0.29" rpy="0 0 0"/>
+                <geometry>
+          <box size="${rack_base_size_x} ${rack_base_size_y} ${rack_base_size_z}"/>
+        </geometry>
+        <material name="DarkGrey"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0.29" rpy="0 0 0"/>
+        <geometry>
+          <box size="${rack_base_size_x} ${rack_base_size_y} ${rack_base_size_z}"/>
+        </geometry>
+      </collision>
+</link>
+<joint name="rack_joint_link41" type="fixed">
+      <origin xyz="${vertical_offset_x} ${vertical_offset_y} 0.390" rpy="0 0 0"/>
+      <child link="rack_link5"/>
+      <parent link="rack_vertical_link1"/>
+    </joint>
+<link name="rack_link5">
+      <inertial>
+        <mass value="2"/>
+        <origin xyz="0 0 0.39"/>
+        <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
+      </inertial>
+      <visual>
+        <origin xyz="${-rack_base_size_x} ${-rack_base_size_y} 0.39" rpy="0 0 0"/>
+                <geometry>
+          <box size="${rack_base_size_x} ${rack_base_size_y} ${rack_base_size_z}"/>
+        </geometry>
+        <material name="DarkGrey"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0.39" rpy="0 0 0"/>
+        <geometry>
+          <box size="${rack_base_size_x} ${rack_base_size_y} ${rack_base_size_z}"/>
+        </geometry>
+      </collision>
+</link>
+	
+<xacro:rack_gazebo/> 
+</robot>

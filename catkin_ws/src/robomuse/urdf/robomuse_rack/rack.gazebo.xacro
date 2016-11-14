@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+       xmlns:xacro="http://ros.org/wiki/xacro">
+
+<xacro:macro name="rack_gazebo">
+	<gazebo reference="rack_base_link1">
+      	      	<gravity>false</gravity>
+		<material>Gazebo/Orange</material>	
+    	</gazebo>
+	<gazebo reference="rack_vertical_link1">
+      	      	<gravity>false</gravity>
+		<material>Gazebo/Orange</material>	
+    	</gazebo>
+	<gazebo reference="rack_vertical_link2">
+      	      	<gravity>false</gravity>
+		<material>Gazebo/Orange</material>	
+    	</gazebo>
+	<gazebo reference="rack_vertical_link3">
+      	      	<gravity>false</gravity>
+		<material>Gazebo/Orange</material>	
+    	</gazebo>
+	<gazebo reference="rack_vertical_link4">
+      	      	<gravity>false</gravity>
+		<material>Gazebo/Orange</material>	
+    	</gazebo>
+		<gazebo reference="rack_link2">
+      	      	<gravity>false</gravity>
+		<material>Gazebo/Red</material>	
+    	</gazebo>
+    	
+		<gazebo reference="rack_link3">
+      	      	<gravity>false</gravity>
+		<material>Gazebo/Red</material>	
+    	</gazebo>
+    	
+		<gazebo reference="rack_link4">
+      	      	<gravity>false</gravity>
+		<material>Gazebo/Red</material>	
+    	</gazebo>
+    	
+		<gazebo reference="rack_link5">
+      	      	<gravity>false</gravity>
+		<material>Gazebo/Red</material>	
+    	</gazebo>
+    <!-- position controller -->
+    <gazebo>
+      <plugin name="base_controller" filename="libgazebo_ros_planar_move.so">
+        <commandTopic>cmd_vel</commandTopic>
+        <odometryTopic>odom</odometryTopic>
+        <odometryFrame>odom</odometryFrame>
+        <odometryRate>100.0</odometryRate>
+        <robotBaseFrame>base_link</robotBaseFrame>
+      </plugin>
+    </gazebo>
+  </xacro:macro>
+<xacro:rack_gazebo/>
+
+</robot>

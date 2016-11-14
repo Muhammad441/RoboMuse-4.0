@@ -1,0 +1,8 @@
+prefix=/home/dell/catkin_ws/install
+
+Name: youbot_par_nav
+Description: Description of youbot_par_nav
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/dell/catkin_ws/install/lib 
+Requires: moveit_core moveit_ros_planning_interface interactive_markers

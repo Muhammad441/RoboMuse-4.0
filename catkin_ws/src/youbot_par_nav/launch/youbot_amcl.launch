@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="amcl" type="amcl" name="amcl">
+  	<rosparam file="/home/ayush/Desktop/youbot_nav/param/amcl.yaml"/>
+  </node>
+
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+  	<remap from="/camera/depth/points" to="/camera/depth_registered/points"/>
+    <rosparam file="/home/ayush/Desktop/youbot_nav/param/costmap_common.yaml" ns="global_costmap" />
+    <rosparam file="/home/ayush/Desktop/youbot_nav/param/costmap_common.yaml" ns="local_costmap" />
+    <rosparam file="/home/ayush/Desktop/youbot_nav/param/local_costmap.yaml" />
+    <rosparam file="/home/ayush/Desktop/youbot_nav/param/global_costmap.yaml" />
+    <rosparam file="/home/ayush/Desktop/youbot_nav/param/base_local_planner.yaml" />
+  </node>
+
+  <!-- RVIZ to view the visualization -->
+  <node name="RVIZ" pkg="rviz" type="rviz" args=" -d /home/ayush/Desktop/youbot_nav/param/youbot_nav.rviz" /> 
+</launch>

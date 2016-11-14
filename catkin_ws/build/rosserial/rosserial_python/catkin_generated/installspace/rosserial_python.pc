@@ -1,0 +1,8 @@
+prefix=/home/dell/catkin_ws/install
+
+Name: rosserial_python
+Description: Description of rosserial_python
+Version: 0.6.4
+Cflags: 
+Libs: -L/home/dell/catkin_ws/install/lib 
+Requires: 

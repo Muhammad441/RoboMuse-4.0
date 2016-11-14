@@ -1,0 +1,8 @@
+prefix=/home/dell/catkin_ws/install
+
+Name: robomuse
+Description: Description of robomuse
+Version: 0.0.0
+Cflags: -I/home/dell/catkin_ws/install/include
+Libs: -L/home/dell/catkin_ws/install/lib 
+Requires: 

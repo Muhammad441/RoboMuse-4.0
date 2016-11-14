@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor" 
+       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller" 
+       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface" 
+       xmlns:xacro="http://ros.org/wiki/xacro"
+	name="first">
+
+<xacro:include filename="$(find robomuse)/urdf/robomuse_base/base.gazebo.xacro"/> 
+ <xacro:include filename="$(find robomuse)/urdf/robomuse_base/base.transmission.xacro"/>	
+  <property name="base_size_x" value="1.6936"/>
+  <property name="base_size_y" value="1.2008"/>
+  <property name="base_size_z" value="0.005"/>
+  <property name="base_mass" value="22.0"/>
+
+  <property name="caster_offset_x" value="0.27907"/>
+  <property name="caster_offset_y" value="0.2"/>
+  <property name="caster_offset_z" value="0"/>
+  <property name="caster_mass" value="0.1"/>
+
+  <property name="wheel_offset_x" value="0.0"/>
+  <property name="wheel_offset_y" value="0.0"/>
+  <property name="wheel_offset_z" value="0.0"/>
+
+  <property name="wheel_mass" value="0.4"/>
+  <property name="wheel_radius" value="0.05"/>
+  <property name="wheel_length" value="0.005"/>
+
+  <property name="caster_joint_damping" value="1.0"/>
+  <property name="caster_joint_friction" value="1.0"/>
+  <property name="caster_joint_effort" value="30"/>
+  <property name="caster_joint_velocity" value="10"/>
+  <property name="caster_joint_safety_k_velocity" value="10.0"/>
+
+  <property name="wheel_joint_damping" value="1.0"/>
+  <property name="wheel_joint_friction" value="1.0"/>
+  <property name="wheel_joint_effort" value="30"/>
+  <property name="wheel_joint_velocity" value="10"/>
+  <property name="wheel_joint_safety_k_velocity" value="10.0"/>
+  
+
+    <link name="base_link">
+      <inertial>
+        <mass value="22"/>
+        <origin xyz="0 0 0.3"/>
+        <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0.3" rpy="0 0 0"/>
+                <geometry>
+  			<mesh filename="package://robomuse/meshes/basenew.dae" />	
+        	</geometry>
+        	<material name="Orange"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0.3" rpy="0 0 0"/>
+        	<geometry>
+         		<mesh filename="package://robomuse/meshes/basenew.dae" />
+        	</geometry>
+      </collision>
+    </link>
+        <joint name="caster_joint_fl" type="continuous">
+      <origin xyz="${-caster_offset_x} ${-caster_offset_y} ${caster_offset_z}" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="${caster_joint_effort}" velocity="${caster_joint_velocity}"/>
+      <dynamics damping="${caster_joint_damping}" friction="${caster_joint_friction}"/>
+      <safety_controller k_velocity="${caster_joint_safety_k_velocity}"/>
+      <parent link="base_link"/>
+      <child link="caster_link_fl"/>
+    </joint>
+    <link name="caster_link_fl">
+      <inertial>
+        <mass value="${caster_mass}"/>
+        <origin xyz="0 0 0"/>
+        <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
+      </inertial>
+    </link>
+
+    <joint name="wheel_joint_fl" type="continuous">
+      <axis xyz="0 1 0"/>
+      <limit effort="${wheel_joint_effort}" velocity="${wheel_joint_velocity}"/>
+      <origin xyz="${wheel_offset_x} ${wheel_offset_y} ${wheel_offset_z}" rpy="0 0 0"/>
+      <parent link="caster_link_fl"/>
+      <dynamics damping="${wheel_joint_damping}" friction="${wheel_joint_friction}"/>
+      <safety_controller k_velocity="${wheel_joint_safety_k_velocity}"/>
+      <child link="wheel_link_fl"/>
+    </joint>
+    <link name="wheel_link_fl">
+      <inertial>
+        <mass value="${wheel_mass}"/>
+        <origin xyz="0 0 0"/>
+        <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="${M_PI/2} 0 ${M_PI/2}"/>
+        <geometry>
+	      <!--mesh filename="package://youbot_description/meshes/youbot_base/front-left_wheel.dae" /-->
+          <cylinder radius="${wheel_radius}" length="${wheel_radius}"/>
+        </geometry>
+        <material name="Orange"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="${M_PI/2} 0 ${M_PI/2}"/>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_radius}"/>
+        </geometry>
+      </collision>
+    </link>
+<!--fr-->
+	    <joint name="caster_joint_fr" type="continuous">
+      <origin xyz="${caster_offset_x} ${-caster_offset_y} ${caster_offset_z}" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="${caster_joint_effort}" velocity="${caster_joint_velocity}"/>
+      <dynamics damping="${caster_joint_damping}" friction="${caster_joint_friction}"/>
+      <safety_controller k_velocity="${caster_joint_safety_k_velocity}"/>
+      <parent link="base_link"/>
+      <child link="caster_link_fr"/>
+    </joint>
+    <link name="caster_link_fr">
+      <inertial>
+        <mass value="${caster_mass}"/>
+        <origin xyz="0 0 0"/>
+        <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
+      </inertial>
+    </link>
+
+    <joint name="wheel_joint_fr" type="continuous">
+      <axis xyz="0 1 0"/>
+      <limit effort="${wheel_joint_effort}" velocity="${wheel_joint_velocity}"/>
+      <dynamics damping="${wheel_joint_damping}" friction="${wheel_joint_friction}"/>
+      <safety_controller k_velocity="${wheel_joint_safety_k_velocity}"/>
+      <origin xyz="${wheel_offset_x} ${wheel_offset_y} ${wheel_offset_z}" rpy="0 0 0"/>
+      <parent link="caster_link_fr"/>
+      <child link="wheel_link_fr"/>
+    </joint>
+    <link name="wheel_link_fr">
+      <inertial>
+        <mass value="${wheel_mass}"/>
+        <origin xyz="0 0 0"/>
+        <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="${M_PI/2} 0 ${M_PI/2}"/>
+        <geometry>
+          <!--mesh filename="package://youbot_description/meshes/youbot_base/front-right_wheel.dae" /-->
+          <cylinder radius="${wheel_radius}" length="${wheel_radius}"/>
+        </geometry>
+        <material name="Orange"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="${M_PI/2} 0 ${M_PI/2}"/>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_radius}"/>
+        </geometry>
+      </collision>
+    </link>
+<!--caster-->
+ <joint name="caster_joint" type="continuous">
+      <origin xyz="0 ${caster_offset_y} 0" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="${caster_joint_effort}" velocity="${caster_joint_velocity}"/>
+      <dynamics damping="${caster_joint_damping}" friction="${caster_joint_friction}"/>
+      <safety_controller k_velocity="${caster_joint_safety_k_velocity}"/>
+      <parent link="base_link"/>
+      <child link="caster_link"/>
+    </joint>
+    <link name="caster_link">
+      <inertial>
+        <mass value="${caster_mass}"/>
+        <origin xyz="0 0 0"/>
+        <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
+      </inertial>
+    </link>
+
+    <joint name="wheel_joint" type="continuous">
+      <axis xyz="0 1 0"/>
+      <limit effort="${wheel_joint_effort}" velocity="${wheel_joint_velocity}"/>
+      <origin xyz="${wheel_offset_x} ${wheel_offset_y} ${wheel_offset_z}" rpy="0 0 0"/>
+      <parent link="caster_link"/>
+      <dynamics damping="${wheel_joint_damping}" friction="${wheel_joint_friction}"/>
+      <safety_controller k_velocity="${wheel_joint_safety_k_velocity}"/>
+      <child link="wheel_link"/>
+    </joint>
+    <link name="wheel_link">
+      <inertial>
+        <mass value="${wheel_mass}"/>
+        <origin xyz="0 0 0"/>
+        <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="${M_PI/2} 0 ${M_PI/2}"/>
+        <geometry>
+	      <!--mesh filename="package://youbot_description/meshes/youbot_base/front-left_wheel.dae" /-->
+          <cylinder radius="${wheel_radius/4*3}" length="${wheel_radius}"/>
+        </geometry>
+        <material name="Orange"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="${M_PI/2} 0 ${M_PI/2}"/>
+        <geometry>
+          <cylinder radius="${wheel_radius/4*3}" length="${wheel_radius}"/>
+        </geometry>
+      </collision>
+    </link>
+
+<xacro:base_gazebo/>
+<xacro:robomuse_base_transmission/>   
+</robot>

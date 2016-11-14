@@ -1,0 +1,127 @@
+<robot name="first" xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller" xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface" xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor" xmlns:xacro="http://ros.org/wiki/xacro">
+  <gazebo reference="base_link">
+    <gravity>false</gravity>
+    <material>Gazebo/Red</material>
+  </gazebo>
+  <gazebo reference="caster_link_fl">
+    <gravity>false</gravity>
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="wheel_link_fl">
+    <gravity>false</gravity>
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <!-- position controller -->
+  <gazebo>
+    <plugin filename="libgazebo_ros_planar_move.so" name="base_controller">
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>100.0</odometryRate>
+      <robotBaseFrame>base_link</robotBaseFrame>
+    </plugin>
+  </gazebo>
+  <joint name="rack_joint_bases" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <child link="rack_base_link"/>
+    <parent link="base_link"/>
+  </joint>  
+<link name="rack_base_link">
+    <inertial>
+      <mass value="2"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.484 0.2 0.006"/>
+      </geometry>
+      <material name="DarkGrey"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.484 0.2 0.006"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="rack_joint_base" type="fixed">
+    <origin rpy="0 0 0" xyz="0.242 0.1 0"/>
+    <child link="rack_vertical_link"/>
+    <parent link="rack_base_link"/>
+  </joint>
+  <link name="rack_vertical_link">
+    <inertial>
+      <mass value="2"/>
+      <origin xyz="-0.0127 -0.0127 0.325"/>
+      <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.0127 -0.0127 0.325"/>
+      <geometry>
+        <box size="0.0254 0.0254 0.65"/>
+      </geometry>
+      <material name="Orange"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.0127 -0.0127 0.325"/>
+      <geometry>
+        <box size="0.0254 0.0254 0.65"/>
+      </geometry>
+    </collision>
+  </link>
+  <!--joint name="wheel_joint_fl" type="continuous">
+      <axis xyz="0 1 0"/>
+      <limit effort="${wheel_joint_effort}" velocity="${wheel_joint_velocity}"/>
+      <origin xyz="${wheel_offset_x} ${wheel_offset_y} ${wheel_offset_z}" rpy="0 0 0"/>
+      <parent link="caster_link_fl"/>
+      <dynamics damping="${wheel_joint_damping}" friction="${wheel_joint_friction}"/>
+      <safety_controller k_velocity="${wheel_joint_safety_k_velocity}"/>
+      <child link="wheel_link_fl"/>
+    </joint>
+    <link name="wheel_link_fl">
+      <inertial>
+        <mass value="${wheel_mass}"/>
+        <origin xyz="0 0 0"/>
+        <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+	     <mesh filename="package://youbot_description/meshes/youbot_base/front-left_wheel.dae" /> >
+          <sphere radius="${wheel_radius}"/>
+        </geometry>
+        <material name="Orange"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="${M_PI/2} 0 0"/>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_radius}"/>
+        </geometry>
+      </collision>
+    </link> -->
+  <gazebo reference="base_link">
+    <gravity>false</gravity>
+    <material>Gazebo/Red</material>
+  </gazebo>
+  <gazebo reference="caster_link_fl">
+    <gravity>false</gravity>
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="wheel_link_fl">
+    <gravity>false</gravity>
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <!-- position controller -->
+  <gazebo>
+    <plugin filename="libgazebo_ros_planar_move.so" name="base_controller">
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>100.0</odometryRate>
+      <robotBaseFrame>base_link</robotBaseFrame>
+    </plugin>
+  </gazebo>
+</robot>
+
