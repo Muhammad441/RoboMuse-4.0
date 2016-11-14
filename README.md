@@ -39,22 +39,22 @@ The following repository contains the arduino and ROS files to operate the RoboM
 
 
 
-Warnings:#
+#Warnings:
 
-    1. Please be ready to plug out the arduino in case of any mishap.
+1. Please be ready to plug out the arduino in case of any mishap.
 
-     2. The kinect can only detect obstacles which are at a distance of 30cm or more, so do not place anything extremely close to the robot initially.
+2. The kinect can only detect obstacles which are at a distance of 30cm or more, so do not place anything extremely close to the robot initially.
 
-     3. Charge the batteries regularly.
+3. Charge the batteries regularly.
 
-     4. In case rosserial fails to work, restart the robot.
+4. In case rosserial fails to work, restart the robot.
 
-      5. To check the accuracy of the encoder reading, open the Serial Monitor of the IDE belonging to code 'teletele'.
+5. To check the accuracy of the encoder reading, open the Serial Monitor of the IDE belonging to code 'teletele'.
 
-      6. In case the robot moves in an uncontrolled fashion (extremely high velocity), switch off the power supply and ensure the  connections from the encoder to the kangaroo are tight (Encoders are attached to the wheels, whereas the kangaroo is attached to the Sabertooth).
+6. In case the robot moves in an uncontrolled fashion (extremely high velocity), switch off the power supply and ensure the  connections from the encoder to the kangaroo are tight (Encoders are attached to the wheels, whereas the kangaroo is attached to the Sabertooth).
 
-       7. Ensure the reading on the Power circuit of the kinect does not exceed 12.1V.
+7. Ensure the reading on the Power circuit of the kinect does not exceed 12.1V.
 
-       8. Ensure the power circuit of the kinect receives 24V and the Motor driver of the robot receives nothing more than 12V.
+8. Ensure the power circuit of the kinect receives 24V and the Motor driver of the robot receives nothing more than 12V.
  
 
