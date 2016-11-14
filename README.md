@@ -14,24 +14,24 @@ The following repository contains the arduino and ROS files to operate the RoboM
 6. Make a note of the Serial ports of both the Arduinos, which could be accessed through the 'tools' option present on the IDE.
 
 7. Each of the following command is to be typed and executed in an individual terminal
-	
+
 	          a. roscore
-	
+
  	          b. rosrun rosserial_python serial_node.py  <Enter Serial port of the 1st Arduino> eg. rosrun rosserial_python serial_node.py /dev/ttyACM0
-	
+
 	          c. rosrun rosserial_python serial_node.py <Enter Serial port of the 2nd Arduino>
-	
+
 	          d. roslaunch  robomuse robomuse_depth_reg.launch
-	
+
 	          e. roslaunch robomuse find_object_3d.launch
-	  
+
 	          f. roslaunch robomuse robomuse_rtab.launch
-	
+
 	          g. roslaunch robomuse robomuse_move_base.launch
-	
+
 	          h. roslaunch robomuse robomuse_nav2d_op.launch
-	
-	          i.  rosrun robomuse move_group_interface_tutorials
+
+	          i. rosrun robomuse move_group_interface_tutorials
 
 8. Upon doing so the robot begins to explore the workspace, and you can view the result of the exploration in Rviz and RTAB.
 
@@ -56,5 +56,3 @@ The following repository contains the arduino and ROS files to operate the RoboM
 7. Ensure the reading on the Power circuit of the kinect does not exceed 12.1V.
 
 8. Ensure the power circuit of the kinect receives 24V and the Motor driver of the robot receives nothing more than 12V.
- 
-
