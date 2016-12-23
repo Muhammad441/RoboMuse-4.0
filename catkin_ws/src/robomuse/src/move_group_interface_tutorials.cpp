@@ -45,11 +45,14 @@
 #include <tf/transform_listener.h>
 #include <pluginlib/class_loader.h>
 #include <nav2d_operator/cmd.h>
+#include<fstream>
+#include<iostream>
+int flag;
 const std::string PLUGIN = "youbot_arm_kinematics_moveit::KinematicsPlugin";
 typedef boost::shared_ptr<kinematics::KinematicsBase> KinematicsBasePtr;
 
 int main(int argc, char **argv)
-{
+{ std::ofstream myfile;
   ros::init(argc, argv, "move_group_interface_tutorial");
   ros::NodeHandle node_handle,n;  
   ros::AsyncSpinner spinner(1);
@@ -68,7 +71,8 @@ int main(int argc, char **argv)
   ros::Publisher pub_nav2d = node_handle.advertise<nav2d_operator::cmd>("cmd", 1000, true);
   ros::Publisher chatter_pub = n.advertise<geometry_msgs::Twist>("cmd_vel", 1000);
   nav2d_operator::cmd command;
-  command.Velocity = 0.2;
+double begin = ros::Time::now().toSec();
+  command.Velocity = 0.1;
   command.Turn = 0.0;
   command.Mode = 0;
 //system("rosrun sound_play soundplay_node.py");
@@ -76,23 +80,275 @@ int main(int argc, char **argv)
   while(!obj_found)
   {
 	  pub_nav2d.publish(command);
-	  obj_found = listener.waitForTransform("/map", "/object_19",ros::Time(0),ros::Duration(0.001));  //change the object number for different settings
-	 // obj_found = listener.lookupTransform("/map", "/odom1", ros::Time(0), transform);
+	  obj_found = listener.waitForTransform("/map", "/object_18",ros::Time(0),ros::Duration(0.001));  //change the object number for different settings
+          if(!obj_found)
+	  obj_found = listener.waitForTransform("/map", "/object_19",ros::Time(0),ros::Duration(0.001));
+	  else 
+		{ flag=1;
+			break;}
+	  if(!obj_found)
+	  obj_found = listener.waitForTransform("/map", "/object_20",ros::Time(0),ros::Duration(0.001));
+	  else 
+		{ flag=2;
+			break;}
+	  if(!obj_found)
+	  obj_found = listener.waitForTransform("/map", "/object_21",ros::Time(0),ros::Duration(0.001));
+	  else 
+		{ flag=3;
+			break;}
+	  if(!obj_found)
+	  obj_found = listener.waitForTransform("/map", "/object_22",ros::Time(0),ros::Duration(0.001));
+	  else 
+		{ flag=4;
+			break;}
+	  if(!obj_found)
+	  obj_found = listener.waitForTransform("/map", "/object_23",ros::Time(0),ros::Duration(0.001));
+	  else 
+		{ flag=5;
+			break;}
+	  if(!obj_found)
+	  obj_found = listener.waitForTransform("/map", "/object_26",ros::Time(0),ros::Duration(0.001));
+	  else 
+		{ flag=6;
+			break;}
+	  if(!obj_found)
+	  obj_found = listener.waitForTransform("/map", "/object_27",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=7;
+			break;}
+	  if(!obj_found)
+	  obj_found = listener.waitForTransform("/map", "/object_28",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=8;
+			break;}
+	  if(!obj_found)
+	  obj_found = listener.waitForTransform("/map", "/object_29",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=9;
+			break;}
+	  if(!obj_found)
+	  obj_found = listener.waitForTransform("/map", "/object_30",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=10;
+			break;}
+	  if(!obj_found)
+	  obj_found = listener.waitForTransform("/map", "/object_31",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=11;
+			break;}
+	  if(!obj_found)
+	  obj_found = listener.waitForTransform("/map", "/object_32",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=12;
+			break;}
+	  if(!obj_found)
+	  obj_found = listener.waitForTransform("/map", "/object_33",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=13;
+			break;}
+	  if(!obj_found)
+	  obj_found = listener.waitForTransform("/map", "/object_34",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=14;
+			break;}
+	  if(!obj_found)
+	   obj_found = listener.waitForTransform("/map", "/object_35",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=15;
+			break;}
+	  if(!obj_found)
+	   obj_found = listener.waitForTransform("/map", "/object_36",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=16;
+			break;}
+	  if(!obj_found)
+	   obj_found = listener.waitForTransform("/map", "/object_37",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=17;
+			break;}
+	  if(!obj_found)
+	   obj_found = listener.waitForTransform("/map", "/object_38",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=18;
+			break;}
+	  if(!obj_found)
+	   obj_found = listener.waitForTransform("/map", "/object_39",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=19;
+			break;}
+	  if(!obj_found)
+	   obj_found = listener.waitForTransform("/map", "/object_40",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=20;
+			break;}
+	  if(!obj_found)
+	   obj_found = listener.waitForTransform("/map", "/object_41",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=21;
+			break;}
+	  if(!obj_found)
+	   obj_found = listener.waitForTransform("/map", "/object_42",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=22;
+			break;}
+	  if(!obj_found)
+	   obj_found = listener.waitForTransform("/map", "/object_43",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=23;
+			break;}
+	  if(!obj_found)
+	   obj_found = listener.waitForTransform("/map", "/object_44",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=24;
+			break;}
+	  if(!obj_found)
+	   obj_found = listener.waitForTransform("/map", "/object_47",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=25;
+			break;}
+	  if(!obj_found)
+	   obj_found = listener.waitForTransform("/map", "/object_48",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=26;
+			break;}
+	  if(!obj_found)
+	   obj_found = listener.waitForTransform("/map", "/object_49",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=27;
+			break;}
+	  if(!obj_found)
+	   obj_found = listener.waitForTransform("/map", "/object_50",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=28;
+			break;}
+	  if(!obj_found)
+	   obj_found = listener.waitForTransform("/map", "/object_51",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=29;
+			break;}
+	  if(!obj_found)
+	   obj_found = listener.waitForTransform("/map", "/object_52",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=30;
+			break;}
+	  if(!obj_found)
+	   obj_found = listener.waitForTransform("/map", "/object_53",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=31;
+			break;}
+	  if(!obj_found)
+	   obj_found = listener.waitForTransform("/map", "/object_54",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=32;
+			break;}
+	  if(!obj_found)
+	   obj_found = listener.waitForTransform("/map", "/object_55",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=33;
+			break;}
+	  if(!obj_found)
+	   obj_found = listener.waitForTransform("/map", "/object_56",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=34;
+			break;}
+	  if(!obj_found)
+	   obj_found = listener.waitForTransform("/map", "/object_57",ros::Time(0),ros::Duration(0.001));
+	 else 
+		{ flag=35;
+			break;}
+	  
+	  // obj_found = listener.lookupTransform("/map", "/odom1", ros::Time(0), transform);
   }  
-  ROS_INFO("TF");    
+  ROS_INFO("TF %d",flag);    
   
   command.Velocity = 0;
   pub_nav2d.publish(command);
-  
+  if(flag==1)
+  listener.lookupTransform("/map", "/object_18", ros::Time(0), transform);
+  if(flag==2)
   listener.lookupTransform("/map", "/object_19", ros::Time(0), transform);
-
+  if(flag==3)
+  listener.lookupTransform("/map", "/object_20", ros::Time(0), transform);
+  if(flag==4)
+  listener.lookupTransform("/map", "/object_21", ros::Time(0), transform);
+  if(flag==5)
+  listener.lookupTransform("/map", "/object_22", ros::Time(0), transform);
+  if(flag==6)
+  listener.lookupTransform("/map", "/object_23", ros::Time(0), transform);
+  if(flag==7)
+  listener.lookupTransform("/map", "/object_26", ros::Time(0), transform);
+  if(flag==8)
+  listener.lookupTransform("/map", "/object_27", ros::Time(0), transform);
+  if(flag==9)
+  listener.lookupTransform("/map", "/object_28", ros::Time(0), transform);
+  if(flag==10)
+  listener.lookupTransform("/map", "/object_29", ros::Time(0), transform);
+  if(flag==11)
+  listener.lookupTransform("/map", "/object_30", ros::Time(0), transform);
+  if(flag==12)
+  listener.lookupTransform("/map", "/object_31", ros::Time(0), transform);
+  if(flag==13)
+  listener.lookupTransform("/map", "/object_32", ros::Time(0), transform);
+  if(flag==14)
+  listener.lookupTransform("/map", "/object_33", ros::Time(0), transform);
+  if(flag==15)
+  listener.lookupTransform("/map", "/object_34", ros::Time(0), transform);
+  if(flag==16)
+  listener.lookupTransform("/map", "/object_35", ros::Time(0), transform);
+  if(flag==17)
+  listener.lookupTransform("/map", "/object_36", ros::Time(0), transform);
+  if(flag==18)
+  listener.lookupTransform("/map", "/object_37", ros::Time(0), transform);
+  if(flag==19)
+  listener.lookupTransform("/map", "/object_38", ros::Time(0), transform);
+  if(flag==20)
+  listener.lookupTransform("/map", "/object_39", ros::Time(0), transform);
+  if(flag==21)
+  listener.lookupTransform("/map", "/object_40", ros::Time(0), transform);
+  if(flag=22)
+  listener.lookupTransform("/map", "/object_41", ros::Time(0), transform);
+  if(flag==23)
+  listener.lookupTransform("/map", "/object_42", ros::Time(0), transform);
+  if(flag==24)
+  listener.lookupTransform("/map", "/object_43", ros::Time(0), transform);
+  if(flag==25)
+  listener.lookupTransform("/map", "/object_44", ros::Time(0), transform);
+  if(flag==26)
+  listener.lookupTransform("/map", "/object_47", ros::Time(0), transform);
+  if(flag==27)
+  listener.lookupTransform("/map", "/object_48", ros::Time(0), transform);
+  if(flag==28)
+  listener.lookupTransform("/map", "/object_49", ros::Time(0), transform);
+  if(flag==29)
+  listener.lookupTransform("/map", "/object_50", ros::Time(0), transform);
+  if(flag==30)
+  listener.lookupTransform("/map", "/object_51", ros::Time(0), transform);
+  if(flag==31)
+  listener.lookupTransform("/map", "/object_52", ros::Time(0), transform);
+  if(flag==32)
+  listener.lookupTransform("/map", "/object_53", ros::Time(0), transform);
+  if(flag==33)
+  listener.lookupTransform("/map", "/object_54", ros::Time(0), transform);
+  if(flag==34)
+  listener.lookupTransform("/map", "/object_55", ros::Time(0), transform);
+  if(flag==35)
+  listener.lookupTransform("/map", "/object_56", ros::Time(0), transform);
+  if(flag==0)
+  listener.lookupTransform("/map", "/object_57", ros::Time(0), transform);
+double end = ros::Time::now().toSec() - begin;
+myfile.open("time");
+	myfile<<end<<"\n";
+	myfile.close();
+	
   ROS_INFO("TF %f %f %f",transform.getOrigin().getX(),transform.getOrigin().getY(),transform.getOrigin().getZ());
   ROS_INFO("TF %f %f %f %f",transform.getRotation().getAxis().getX(),transform.getRotation().getAxis().getY(),transform.getRotation().getAxis().getZ(),transform.getRotation().getW());
+
 while(1)
 {
 geometry_msgs::Twist a;
-a.linear.y=1;
- chatter_pub.publish(a);
+a.angular.z=0;
+a.linear.x=0;
+chatter_pub.publish(a);
 } 
 /* ros::Publisher pub = node_handle.advertise<geometry_msgs::PoseStamped>("move_base_simple/goal", 1000, true);
 
