@@ -1,11 +1,22 @@
 #include "ros/ros.h"
 #include <geometry_msgs/Twist.h>
 #include <sstream>
-geometry_msgs::Twist msg;  
+geometry_msgs::Twist msg;
+int flag = 0 ;  
 void chatterCallback(const geometry_msgs::Twist ptr)
    {
      msg=ptr;
-	
+     if(ptr.linear.x == 0 && ptr.angular.z == 0)
+	{
+		if ( flag == 2) msg = ptr;  		
+		else flag++;
+	}
+     else 
+	{
+		flag = 0;
+		msg = ptr;
+	}
+	 
    }
 int main(int argc, char **argv)
   {
