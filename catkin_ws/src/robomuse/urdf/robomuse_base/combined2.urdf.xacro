@@ -34,8 +34,8 @@
   <property name="base_size_z" value="0.005"/>
   <property name="base_mass" value="22.0"/>
 
-  <property name="caster_offset_x" value="0.27907"/>
-  <property name="caster_offset_y" value="0.2"/>
+  <property name="caster_offset_x" value="0.22"/>
+  <property name="caster_offset_y" value="0.28"/>
   <property name="caster_offset_z" value="0"/>
   <property name="caster_mass" value="0.1"/>
 
@@ -94,21 +94,21 @@
         <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
       </inertial>
       <visual>
-        <origin xyz="0 0 0.3" rpy="0 0 0"/>
+        <origin xyz="0 0 0.3" rpy="0 0 ${-M_PI/2}"/>
                 <geometry>
   			<mesh filename="package://robomuse/meshes/basenew.dae" />	
         	</geometry>
         	<material name="Orange"/>
       </visual>
       <collision>
-        <origin xyz="0 0 0.3" rpy="0 0 0"/>
+        <origin xyz="0 0 0.3" rpy="0 0 ${-M_PI/2}"/>
         	<geometry>
          		<mesh filename="package://robomuse/meshes/basenew.dae" />
         	</geometry>
       </collision>
     </link>
       <joint name="chassis_joint_base" type="fixed">
-      <origin xyz="0 .68 ${-0.26}" rpy="0 0 0"/>
+      <origin xyz=" .68 0 ${-0.26}" rpy="0 0 0"/>
       <child link="chassis_link"/>
       <parent link="base_link"/>
     </joint>
@@ -119,14 +119,14 @@
         <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
       </inertial>
       <visual>
-        <origin xyz="0 0 0" rpy="3.14 0 0"/>
+        <origin xyz="0 0 0" rpy="3.14 0 ${-M_PI/2}"/>
                 <geometry>
   			<mesh filename="package://robomuse/meshes/chassis.dae" />	
         	</geometry>
         	<material name="Orange"/>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="3.14 0 0"/>
+        <origin xyz="0 0 0" rpy="3.14 0 ${-M_PI/2}"/>
         	<geometry>
          		<mesh filename="package://robomuse/meshes/chassis.dae" />
         	</geometry>
@@ -165,15 +165,15 @@
         <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
       </inertial>
       <visual>
-        <origin xyz="0 0 0" rpy="${M_PI/2} 0 ${M_PI/2}"/>
+        <origin xyz="0 0 0" rpy="${M_PI/2} 0 0"/>
         <geometry>
-	      <!--mesh filename="package://youbot_description/meshes/youbot_base/front-left_wheel.dae" /-->
+	      
           <cylinder radius="${wheel_radius}" length="${wheel_radius}"/>
         </geometry>
         <material name="Orange"/>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="${M_PI/2} 0 ${M_PI/2}"/>
+        <origin xyz="0 0 0" rpy="${M_PI/2} 0 0"/>
         <geometry>
           <cylinder radius="${wheel_radius}" length="${wheel_radius}"/>
         </geometry>
@@ -181,7 +181,7 @@
     </link>
 <!--fr-->
 	    <joint name="caster_joint_fr" type="continuous">
-      <origin xyz="${caster_offset_x} ${-caster_offset_y} ${caster_offset_z}" rpy="0 0 0"/>
+      <origin xyz="${-caster_offset_x} ${caster_offset_y} ${caster_offset_z}" rpy="0 0 0"/>
       <axis xyz="0 0 1"/>
       <limit effort="${caster_joint_effort}" velocity="${caster_joint_velocity}"/>
       <dynamics damping="${caster_joint_damping}" friction="${caster_joint_friction}"/>
@@ -213,15 +213,14 @@
         <inertia ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943"/>
       </inertial>
       <visual>
-        <origin xyz="0 0 0" rpy="${M_PI/2} 0 ${M_PI/2}"/>
+        <origin xyz="0 0 0" rpy="${M_PI/2} 0 0"/>
         <geometry>
-          <!--mesh filename="package://youbot_description/meshes/youbot_base/front-right_wheel.dae" /-->
-          <cylinder radius="${wheel_radius}" length="${wheel_radius}"/>
+             <cylinder radius="${wheel_radius}" length="${wheel_radius}"/>
         </geometry>
         <material name="Orange"/>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="${M_PI/2} 0 ${M_PI/2}"/>
+        <origin xyz="0 0 0" rpy="${M_PI/2} 0 0"/>
         <geometry>
           <cylinder radius="${wheel_radius}" length="${wheel_radius}"/>
         </geometry>
@@ -265,8 +264,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="${M_PI/2} 0 ${M_PI/2}"/>
         <geometry>
-	      <!--mesh filename="package://youbot_description/meshes/youbot_base/front-left_wheel.dae" /-->
-          <sphere radius="${wheel_radius/4*3}"/>
+	   <sphere radius="${wheel_radius/4*3}"/>
         </geometry>
         <material name="Orange"/>
       </visual>
@@ -279,7 +277,7 @@
     </link>
 
       <joint name="rack_joint_base" type="fixed">
-      <origin xyz="${vertical_offset_x} ${vertical_offset_y - .20} 0" rpy="0 0 0"/>
+      <origin xyz="${vertical_offset_y - .20} ${vertical_offset_x} 0" rpy="0 0 0"/>
       <child link="rack_vertical_link1"/>
       <parent link="base_link"/>
     </joint>
@@ -306,7 +304,7 @@
     </link>
 
 <joint name="rack_joint_base1" type="fixed">
-      <origin xyz="${vertical_offset_x} ${-vertical_offset_y - .20} 0" rpy="0 0 0"/>
+      <origin xyz="${-vertical_offset_y - .2} ${vertical_offset_x - 0.025} 0" rpy="0 0 0"/>
       <child link="rack_vertical_link2"/>
       <parent link="base_link"/>
     </joint>
@@ -332,7 +330,7 @@
       </collision>
     </link>
 <joint name="rack_joint_base2" type="fixed">
-      <origin xyz="${-vertical_offset_x} ${-vertical_offset_y - .20} 0" rpy="0 0 0"/>
+      <origin xyz="${-vertical_offset_y - .23} ${-vertical_offset_x} 0" rpy="0 0 0"/>
       <child link="rack_vertical_link3"/>
       <parent link="base_link"/>
     </joint>
@@ -357,7 +355,7 @@
       </collision>
     </link>
 <joint name="rack_joint_base3" type="fixed">
-      <origin xyz="${-vertical_offset_x} ${vertical_offset_y - .20} 0" rpy="0 0 0"/>
+      <origin xyz="${-vertical_offset_y -0.03} ${-vertical_offset_x + 0.025} 0" rpy="0 0 0"/>
       <child link="rack_vertical_link4"/>
       <parent link="base_link"/>
     </joint>
@@ -383,7 +381,7 @@
     </link>
 
 <joint name="rack_joint_link11" type="fixed">
-      <origin xyz="${vertical_offset_x} ${vertical_offset_y} 0.090" rpy="0 0 0"/>
+      <origin xyz="${vertical_offset_x + 0.13} -0.035 0.090" rpy="0 0 0"/>
       <child link="rack_link2"/>
       <parent link="rack_vertical_link1"/>
     </joint>
@@ -394,14 +392,14 @@
         <inertia ixx="0.00774243378" ixy="-0.01404395602" ixz="-.00042131868" iyy="0.04530596321" iyz="0.00017409863" izz="0.05303446911"/>
       </inertial>
       <visual>
-        <origin xyz="${-rack_base_size_x} ${-rack_base_size_y} 0.09" rpy="0 0 0"/>
+        <origin xyz="${-rack_base_size_x} ${-rack_base_size_y} 0.09" rpy="0 0 ${M_PI/2}"/>
                 <geometry>
           <box size="${rack_base_size_x} ${rack_base_size_y} ${rack_base_size_z}"/>
         </geometry>
         <material name="DarkGrey"/>
       </visual>
       <collision>
-        <origin xyz="${-rack_base_size_x} ${-rack_base_size_y} 0.09" rpy="0 0 0"/>
+        <origin xyz="${-rack_base_size_x} ${-rack_base_size_y} 0.09" rpy="0 0 ${M_PI/2}"/>
         <geometry>
           <box size="${rack_base_size_x} ${rack_base_size_y} ${rack_base_size_z}"/>
         </geometry>
@@ -409,7 +407,7 @@
 </link>
 
 <joint name="rack_joint_link21" type="fixed">
-      <origin xyz="${vertical_offset_x} ${vertical_offset_y} 0.190" rpy="0 0 0"/>
+      <origin xyz="${vertical_offset_x + 0.13} -0.035 0.190" rpy="0 0 0"/>
       <child link="rack_link3"/>
       <parent link="rack_vertical_link1"/>
     </joint>
@@ -420,21 +418,21 @@
         <inertia ixx="0.00774243378" ixy="-0.01404395602" ixz="-.00042131868" iyy="0.04530596321" iyz="0.00017409863" izz="0.05303446911"/>
       </inertial>
       <visual>
-        <origin xyz="${-rack_base_size_x} ${-rack_base_size_y} 0.19" rpy="0 0 0"/>
+        <origin xyz="${-rack_base_size_x} ${-rack_base_size_y} 0.19" rpy="0 0 ${M_PI/2}"/>
                 <geometry>
           <box size="${rack_base_size_x} ${rack_base_size_y} ${rack_base_size_z}"/>
         </geometry>
         <material name="DarkGrey"/>
       </visual>
       <collision>
-        <origin xyz="${-rack_base_size_x} ${-rack_base_size_y} 0.19" rpy="0 0 0"/>
+        <origin xyz="${-rack_base_size_x} ${-rack_base_size_y} 0.19" rpy="0 0 ${M_PI/2}"/>
         <geometry>
           <box size="${rack_base_size_x} ${rack_base_size_y} ${rack_base_size_z}"/>
         </geometry>
       </collision>
 </link>
 <joint name="rack_joint_link31" type="fixed">
-      <origin xyz="${vertical_offset_x} ${vertical_offset_y} 0.290" rpy="0 0 0"/>
+      <origin xyz="${vertical_offset_x + 0.13} -0.035 0.290" rpy="0 0 0"/>
       <child link="rack_link4"/>
       <parent link="rack_vertical_link1"/>
     </joint>
@@ -444,21 +442,21 @@
         <origin xyz="${-rack_base_size_x} ${-rack_base_size_y} 0.29"/>
         <inertia ixx="0.00774243378" ixy="-0.01404395602" ixz="-.00042131868" iyy="0.04530596321" iyz="0.00017409863" izz="0.05303446911"/>      </inertial>
       <visual>
-        <origin xyz="${-rack_base_size_x} ${-rack_base_size_y} 0.29" rpy="0 0 0"/>
+        <origin xyz="${-rack_base_size_x} ${-rack_base_size_y} 0.29" rpy="0 0 ${M_PI/2}"/>
                 <geometry>
           <box size="${rack_base_size_x} ${rack_base_size_y} ${rack_base_size_z}"/>
         </geometry>
         <material name="DarkGrey"/>
       </visual>
       <collision>
-        <origin xyz="${-rack_base_size_x} ${-rack_base_size_y} 0.29" rpy="0 0 0"/>
+        <origin xyz="${-rack_base_size_x} ${-rack_base_size_y} 0.29" rpy="0 0 ${M_PI/2}"/>
         <geometry>
           <box size="${rack_base_size_x} ${rack_base_size_y} ${rack_base_size_z}"/>
         </geometry>
       </collision>
 </link>
 <joint name="rack_joint_link41" type="fixed">
-      <origin xyz="${vertical_offset_x} ${vertical_offset_y} 0.390" rpy="0 0 0"/>
+      <origin xyz="${vertical_offset_x + 0.13} -0.035 0.390" rpy="0 0 0"/>
       <child link="rack_link5"/>
       <parent link="rack_vertical_link1"/>
     </joint>
@@ -468,14 +466,14 @@
         <origin xyz="0 0 0.39"/>
         <inertia ixx="0.00774243378" ixy="-0.01404395602" ixz="-.00042131868" iyy="0.04530596321" iyz="0.00017409863" izz="0.05303446911"/>      </inertial>
       <visual>
-        <origin xyz="${-rack_base_size_x} ${-rack_base_size_y} 0.39" rpy="0 0 0"/>
+        <origin xyz="${-rack_base_size_x} ${-rack_base_size_y} 0.39" rpy="0 0 ${M_PI/2}"/>
                 <geometry>
           <box size="${rack_base_size_x} ${rack_base_size_y} ${rack_base_size_z}"/>
         </geometry>
         <material name="DarkGrey"/>
       </visual>
       <collision>
-        <origin xyz="${-rack_base_size_x} ${-rack_base_size_y} 0.39" rpy="0 0 0"/>
+        <origin xyz="${-rack_base_size_x} ${-rack_base_size_y} 0.39" rpy="0 0 ${M_PI/2}"/>
         <geometry>
           <box size="${rack_base_size_x} ${rack_base_size_y} ${rack_base_size_z}"/>
         </geometry>
@@ -484,14 +482,15 @@
    
 
  <joint name="camera_rgb_joint" type="fixed">
-      <origin xyz="0 0.3 0.1" rpy="0 0 ${M_PI/2} "/>
+      <!--origin xyz="0 0.3 0.1" rpy="0 0 ${M_PI/2} "/-->
+      <origin xyz="0 -.03 0.1" rpy="0 0 0 "/>
       <parent link="base_link"/>
       <child link="camera_rgb_frame" />
     </joint>
     <link name="camera_rgb_frame"/>
 
     <joint name="camera_rgb_optical_joint" type="fixed">
-      <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
+      <origin xyz="0 0 0" rpy="${-M_PI/2} 0 0" />
       <parent link="camera_rgb_frame" />
       <child link="camera_rgb_optical_frame" />
     </joint>
@@ -504,7 +503,7 @@
     </joint>  
       <link name="camera_link">
       <visual>
-       <origin xyz="0 0 0" rpy="0 0 ${M_PI/2}"/>
+       <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
          <mesh filename="package://robomuse/meshes/kinect.dae"/>
         </geometry>
@@ -512,7 +511,7 @@
   	  <collision>
         <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
   	    <geometry>
-  	      <box size="0.07271 0.27794 0.073"/>
+  	       <mesh filename="package://robomuse/meshes/kinect.dae"/>
   	    </geometry>
   	  </collision>
       <inertial>
