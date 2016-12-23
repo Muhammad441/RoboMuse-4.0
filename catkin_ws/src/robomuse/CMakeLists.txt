@@ -7,6 +7,7 @@ find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs genmsg urdf tf nav
              pluginlib
              cmake_modules
              geometric_shapes
+	     sensor_msgs
              )
 
 ## Find catkin macros and libraries
@@ -24,6 +25,7 @@ find_package(Boost REQUIRED system filesystem date_time thread)
  generate_messages(
    DEPENDENCIES
    std_msgs  # Or other packages containing msgs
+   
  )
 
 
@@ -135,6 +137,7 @@ link_directories(${catkin_LIBRARY_DIRS})
 include_directories(
   ${catkin_INCLUDE_DIRS}
 )
+
 add_executable(odom src/odom.cpp)
 target_link_libraries(odom ${catkin_LIBRARIES})
 add_dependencies(odom robomuse_generate_messages_cpp)
@@ -147,37 +150,9 @@ add_executable(listener src/listener.cpp)
 target_link_libraries(listener ${catkin_LIBRARIES})
 add_dependencies(listener robomuse_generate_messages_cpp)
 
-add_executable(example3_a src/example3_a.cpp)
-target_link_libraries(example3_a ${catkin_LIBRARIES})
-add_dependencies(example3_a robomuse_generate_messages_cpp)
-
-add_executable(example3_b src/example3_b.cpp)
-target_link_libraries(example3_b ${catkin_LIBRARIES})
-add_dependencies(example3_b robomuse_generate_messages_cpp)
-
-add_executable(example3_c src/example3_c.cpp)
-target_link_libraries(example3_c ${catkin_LIBRARIES})
-add_dependencies(example3_c robomuse_generate_messages_cpp)
-
-add_executable(example3_d src/example3_d.cpp)
-target_link_libraries(example3_d ${catkin_LIBRARIES})
-add_dependencies(example3_d robomuse_generate_messages_cpp)
-
-add_executable(example3_e src/example3_e.cpp)
-target_link_libraries(example3_e ${catkin_LIBRARIES})
-add_dependencies(example3_e robomuse_generate_messages_cpp)
-
 add_executable(zeta src/zeta.cpp)
 target_link_libraries(zeta ${catkin_LIBRARIES})
 add_dependencies(zeta robomuse_generate_messages_cpp)
-
-add_executable(example4_a src/example4_a.cpp)
-target_link_libraries(example4_a ${catkin_LIBRARIES})
-add_dependencies(example4_a robomuse_generate_messages_cpp)
-
-add_executable(example4_b src/example4_b.cpp)
-target_link_libraries(example4_b ${catkin_LIBRARIES})
-add_dependencies(example4_b robomuse_generate_messages_cpp)
 
 add_executable(teleop src/teleop.cpp)
 target_link_libraries(teleop ${catkin_LIBRARIES})
