@@ -7,7 +7,7 @@ void chatterCallback(const geometry_msgs::Point::ConstPtr& msg)
    {  x=msg->x;
       y=msg->y;
       th=msg->z;
-     //ROS_INFO("%f",th);
+     
    }
    int main(int argc, char **argv)
    {
